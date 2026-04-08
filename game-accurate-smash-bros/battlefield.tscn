@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bk5q83ygabr8l"]
+
+[ext_resource type="PackedScene" uid="uid://csj1buka8rtb4" path="res://platform.tscn" id="1_hy033"]
+[ext_resource type="Script" uid="uid://cqh01hb3t7bn4" path="res://battlefield.gd" id="1_tkjg1"]
+[ext_resource type="PackedScene" uid="uid://bgh30s8f4bdod" path="res://Sonic.tscn" id="2_4y0t7"]
+[ext_resource type="PackedScene" uid="uid://8rtwtsneye6" path="res://Mega_Man.tscn" id="3_fxwnf"]
+
+[node name="Battlefield" type="Node2D" unique_id=332520570]
+script = ExtResource("1_tkjg1")
+
+[node name="Platform" parent="." unique_id=1553753282 instance=ExtResource("1_hy033")]
+position = Vector2(-46, 439)
+
+[node name="Mega Man" parent="." unique_id=882043154 instance=ExtResource("3_fxwnf")]
+position = Vector2(698, 430)
+
+[node name="Sonic" parent="." unique_id=1449885204 instance=ExtResource("2_4y0t7")]
+position = Vector2(447, 438)

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://c631jqada1dfy"]
+
+[ext_resource type="Script" uid="uid://cpe2b4gveke3g" path="res://buster.gd" id="1_0xlgt"]
+[ext_resource type="Texture2D" uid="uid://bdub84235xpgm" path="res://Sprites/weapons.png" id="1_br8y0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0xlgt"]
+size = Vector2(26.5, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rj8h3"]
+size = Vector2(28, 17)
+
+[node name="Buster" type="CharacterBody2D" unique_id=903006867]
+position = Vector2(-10, 5)
+script = ExtResource("1_0xlgt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=166626596]
+position = Vector2(9.75, -5.5)
+shape = SubResource("RectangleShape2D_0xlgt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=913470634]
+position = Vector2(9.5, -5.5)
+scale = Vector2(3.375, 2.5)
+texture = ExtResource("1_br8y0")
+region_enabled = true
+region_rect = Rect2(290, 13, 8, 6)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=396014442]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=930757115]
+position = Vector2(10, -5.5)
+shape = SubResource("RectangleShape2D_rj8h3")

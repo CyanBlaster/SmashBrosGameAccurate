@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://csj1buka8rtb4"]
+
+[ext_resource type="Texture2D" uid="uid://5upbp7y2knt1" path="res://Sprites/Battlefield.png" id="1_mi635"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mi635"]
+size = Vector2(1807, 114)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s8bxr"]
+size = Vector2(54.142242, 9.107616)
+
+[node name="Node2D" type="Node2D" unique_id=1553753282]
+
+[node name="Platform" type="Sprite2D" parent="." unique_id=553393447]
+position = Vector2(635.6139, 74.412056)
+scale = Vector2(2.004385, 2.2412057)
+texture = ExtResource("1_mi635")
+region_enabled = true
+region_rect = Rect2(20, 70, 280, 20)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Platform" unique_id=660283663]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/CharacterBody2D" unique_id=112635338]
+position = Vector2(1.6893575, -2.4148026)
+scale = Vector2(0.15263385, 0.10890386)
+shape = SubResource("RectangleShape2D_mi635")
+
+[node name="Side Platform" type="Sprite2D" parent="Platform" unique_id=36983545]
+position = Vector2(-69.15533, -48.372208)
+scale = Vector2(1.1530201, 0.8746668)
+texture = ExtResource("1_mi635")
+region_enabled = true
+region_rect = Rect2(19, 27, 50, 10)
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="Platform/Side Platform" unique_id=1703014229]
+position = Vector2(54.448822, 85.50212)
+scale = Vector2(0.8672876, 1.1432923)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform/CharacterBody2D2" unique_id=593176582]
+position = Vector2(-62.669563, -73.804955)
+shape = SubResource("RectangleShape2D_s8bxr")
+
+[node name="Side Platform2" type="Sprite2D" parent="Platform" unique_id=1315732588]
+position = Vector2(62.05699, -48.81839)
+scale = Vector2(1.1530201, 0.8746668)
+texture = ExtResource("1_mi635")
+region_enabled = true
+region_rect = Rect2(19, 27, 50, 10)
+
+[node name="CharacterBody2D2" type="CharacterBody2D" parent="Platform/Side Platform2" unique_id=406216768]
+position = Vector2(54.448822, 86.52237)
+scale = Vector2(0.8672876, 1.1432923)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform2/CharacterBody2D2" unique_id=1412902307]
+position = Vector2(-61.78276, -74.78588)
+shape = SubResource("RectangleShape2D_s8bxr")
