@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ds2s4xmfs1iui"]
+
+[ext_resource type="Script" uid="uid://tj7fch2glq7r" path="res://metal_blade.gd" id="1_hhmsb"]
+[ext_resource type="Texture2D" uid="uid://bdub84235xpgm" path="res://Sprites/weapons.png" id="2_2ckhu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hcdip"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46c26"]
+size = Vector2(30, 30)
+
+[node name="Metal Blade" type="CharacterBody2D"]
+position = Vector2(-2, 2)
+script = ExtResource("1_hhmsb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.0000005, -2.0000005)
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("2_2ckhu")
+region_enabled = true
+region_rect = Rect2(269, 42, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -2)
+shape = SubResource("RectangleShape2D_hcdip")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, -2)
+shape = SubResource("RectangleShape2D_46c26")

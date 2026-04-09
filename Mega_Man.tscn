@@ -1,0 +1,122 @@
+[gd_scene load_steps=11 format=3 uid="uid://8rtwtsneye6"]
+
+[ext_resource type="Script" uid="uid://djkqwojcv3mfm" path="res://mega_man.gd" id="1_0mtth"]
+[ext_resource type="Texture2D" uid="uid://dfxdv4fcm52fg" path="res://Sprites/Mega_Man.png" id="1_72wrd"]
+[ext_resource type="Script" uid="uid://domfyiplvmcxu" path="res://mega_man_animator.gd" id="2_mhm21"]
+
+[sub_resource type="Animation" id="Animation_mhm21"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(8, 60, 32, 28)]
+}
+
+[sub_resource type="Animation" id="Animation_at6jn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(8, 60, 32, 28)]
+}
+
+[sub_resource type="Animation" id="Animation_lwuaq"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(336, 53, 29, 35)]
+}
+
+[sub_resource type="Animation" id="Animation_6xyp2"]
+resource_name = "Walk"
+length = 1.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(47, 53, 29, 35), Rect2(87, 53, 29, 35), Rect2(118, 53, 29, 35), Rect2(152, 53, 29, 35), Rect2(192, 53, 29, 35), Rect2(223, 53, 29, 35)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6xyp2"]
+_data = {
+&"Idle": SubResource("Animation_mhm21"),
+&"Jump": SubResource("Animation_lwuaq"),
+&"RESET": SubResource("Animation_at6jn"),
+&"Walk": SubResource("Animation_6xyp2")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0mtth"]
+radius = 11.0
+height = 46.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mhm21"]
+radius = 5.0
+height = 44.0
+
+[node name="Mega Man" type="CharacterBody2D"]
+script = ExtResource("1_0mtth")
+
+[node name="Animator" type="Node2D" parent="." node_paths=PackedStringArray("animator", "player_controller", "sprite")]
+script = ExtResource("2_mhm21")
+animator = NodePath("AnimationPlayer")
+player_controller = NodePath("..")
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="Animator"]
+position = Vector2(-1, 5)
+scale = Vector2(1.6034483, 1.6111112)
+texture = ExtResource("1_72wrd")
+region_enabled = true
+region_rect = Rect2(8, 60, 32, 28)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animator"]
+libraries = {
+&"": SubResource("AnimationLibrary_6xyp2")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 4)
+shape = SubResource("CapsuleShape2D_0mtth")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(10, 5)
+shape = SubResource("CapsuleShape2D_mhm21")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-11, 5)
+shape = SubResource("CapsuleShape2D_mhm21")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered"]
