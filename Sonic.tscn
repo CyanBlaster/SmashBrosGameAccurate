@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgh30s8f4bdod"]
+[gd_scene load_steps=14 format=3 uid="uid://bgh30s8f4bdod"]
 
 [ext_resource type="Script" uid="uid://b12qsvdaajomf" path="res://sonic.gd" id="1_cqb71"]
 [ext_resource type="Texture2D" uid="uid://deug1d6krrpby" path="res://Sprites/Sonic.png" id="1_s8pwu"]
 [ext_resource type="Script" uid="uid://dy3tchcvj1xln" path="res://sonic_animator.gd" id="2_e0qkc"]
+[ext_resource type="PackedScene" uid="uid://durgx0tnxt7tv" path="res://sonic_shield.tscn" id="2_fua3x"]
 
 [sub_resource type="Animation" id="Animation_e0qkc"]
 resource_name = "Idle"
@@ -113,6 +114,8 @@ height = 42.0
 
 [node name="Sonic" type="CharacterBody2D"]
 script = ExtResource("1_cqb71")
+
+[node name="Node2D" parent="." instance=ExtResource("2_fua3x")]
 
 [node name="Animator" type="Node2D" parent="." node_paths=PackedStringArray("animator", "player_controller", "sprite", "collision", "collision2")]
 script = ExtResource("2_e0qkc")

@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://8rtwtsneye6"]
+[gd_scene load_steps=14 format=3 uid="uid://8rtwtsneye6"]
 
 [ext_resource type="Script" uid="uid://djkqwojcv3mfm" path="res://mega_man.gd" id="1_0mtth"]
 [ext_resource type="Texture2D" uid="uid://dfxdv4fcm52fg" path="res://Sprites/Mega_Man.png" id="1_72wrd"]
 [ext_resource type="Script" uid="uid://domfyiplvmcxu" path="res://mega_man_animator.gd" id="2_mhm21"]
+[ext_resource type="Script" uid="uid://cpxt2u2dpncrt" path="res://label.gd" id="4_at6jn"]
 
 [sub_resource type="Animation" id="Animation_mhm21"]
 resource_name = "Idle"
@@ -142,6 +143,15 @@ shape = SubResource("CapsuleShape2D_mhm21")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 position = Vector2(-2, 16)
 shape = SubResource("RectangleShape2D_qtvgu")
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("player")]
+offset_left = -9.0
+offset_top = -49.0
+offset_right = 10.0
+offset_bottom = -26.0
+text = "32"
+script = ExtResource("4_at6jn")
+player = NodePath("..")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Area2D2" to="." method="_on_area_2d_area_entered"]
