@@ -44,5 +44,5 @@ func _process(_delta):
 	if(Sonic.direct > 0):
 		sprite.flip_h = false
 	elif(Sonic.direct < 0):
-		sprite.flip_h = true
+		sprite.flip_h = true 
 	
