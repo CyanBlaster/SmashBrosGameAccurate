@@ -115,7 +115,7 @@ height = 42.0
 [node name="Sonic" type="CharacterBody2D"]
 script = ExtResource("1_cqb71")
 
-[node name="Node2D" parent="." instance=ExtResource("2_fua3x")]
+[node name="Blur" parent="." instance=ExtResource("2_fua3x")]
 
 [node name="Animator" type="Node2D" parent="." node_paths=PackedStringArray("animator", "player_controller", "sprite", "collision", "collision2")]
 script = ExtResource("2_e0qkc")

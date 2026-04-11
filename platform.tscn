@@ -8,7 +8,7 @@ size = Vector2(1807, 114)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s8bxr"]
 size = Vector2(54.142242, 2.6805058)
 
-[node name="Node2D" type="Node2D"]
+[node name="Platform" type="Node2D"]
 
 [node name="Platform" type="Sprite2D" parent="."]
 position = Vector2(635.6139, 74.412056)
@@ -31,11 +31,11 @@ texture = ExtResource("1_mi635")
 region_enabled = true
 region_rect = Rect2(19, 27, 50, 10)
 
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="Platform/Side Platform"]
+[node name="platform" type="CharacterBody2D" parent="Platform/Side Platform"]
 position = Vector2(54.448822, 85.50212)
 scale = Vector2(0.8672876, 1.1432923)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform/CharacterBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform/platform"]
 position = Vector2(-62.669586, -77.01851)
 shape = SubResource("RectangleShape2D_s8bxr")
 
@@ -46,10 +46,10 @@ texture = ExtResource("1_mi635")
 region_enabled = true
 region_rect = Rect2(19, 27, 50, 10)
 
-[node name="CharacterBody2D2" type="CharacterBody2D" parent="Platform/Side Platform2"]
+[node name="platform" type="CharacterBody2D" parent="Platform/Side Platform2"]
 position = Vector2(54.448822, 86.52237)
 scale = Vector2(0.8672876, 1.1432923)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform2/CharacterBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform2/platform"]
 position = Vector2(-62.281693, -77.9092)
 shape = SubResource("RectangleShape2D_s8bxr")

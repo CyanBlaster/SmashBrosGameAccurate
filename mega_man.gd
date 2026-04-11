@@ -9,7 +9,7 @@ const JUMP_VELOCITY = -500.0
 @export var weapon = 1
 @export var slide_speed = 300
 
-@export var metal_blade_energy = 32
+@export var metal_blade_energy = 8
 
 
 #@onready var Bullet = preload("res://buster.tscn")
@@ -30,9 +30,10 @@ func _process(_delta):
 				bullet.position.x = position.x + 35
 			else:
 				bullet.position.x = position.x - 35
-			print(position.y)
-			print("Bullet X: ", bullet.position.x)
-			print("Bullet Y: ", bullet.position.y)
+			#print(position.y)
+			#print("Bullet X: ", bullet.position.x)
+			#print("Bullet Y: ", bullet.position.y)
+			bullet.name = "blade_"
 			get_parent().add_child(bullet)
 			metal_blade_energy -= 1
 		else:
@@ -46,9 +47,10 @@ func _process(_delta):
 				bullet.position.x = position.x + 20
 			else:
 				bullet.position.x = position.x - 20
-			print(position.y)
-			print("Bullet X: ", bullet.position.x)
-			print("Bullet Y: ", bullet.position.y)
+			#print(position.y)
+			#print("Bullet X: ", bullet.position.x)
+			#print("Bullet Y: ", bullet.position.y)
+			bullet.name = "buster_"
 			get_parent().add_child(bullet)
 		#add_child(bullet)
  
