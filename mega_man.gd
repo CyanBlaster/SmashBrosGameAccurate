@@ -14,8 +14,8 @@ const JUMP_VELOCITY = -500.0
 
 #@onready var Bullet = preload("res://buster.tscn")
 
-func _process(_delta):
-	if Input.is_action_just_pressed("Player2Switch"):
+func _process(_delta): 
+	if Input.is_action_just_pressed("Player2Switch"):  
 		if(weapon < 2):
 			weapon += 1
 		else:
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if(direction != 0):
-		direct = direction
+		direct = direction 
 	if direction:
 		if(Input.is_action_just_pressed("Player2Slide")):
 			while(slide_speed > 0):
@@ -84,8 +84,18 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		moving = false 
 	move_and_slide()
+ 
+
+
+#func _on_area_2d_area_entered(_area: Area2D) -> void:
+	#position.x -= 10
 
 
 
-func _on_area_2d_area_entered(_area: Area2D) -> void:
+func _on_left_area_entered(area: Area2D) -> void:
+	position.x += 10
+
+
+
+func _on_right_area_entered(area: Area2D) -> void:
 	position.x -= 10

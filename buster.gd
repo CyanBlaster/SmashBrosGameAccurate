@@ -15,17 +15,13 @@ func _physics_process(delta: float) -> void:
 		time -= delta
 	if(time <= 0):
 		queue_free()
- 
-  
- 
 
 
 #func _on_area_2d_area_entered(_area: Area2D) -> void:
 	#timer = true
-
-
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.name == "Shield"):
+		print(" ")
 		queue_free()
 	if(body.name == "Sonic"):
 		timer = true

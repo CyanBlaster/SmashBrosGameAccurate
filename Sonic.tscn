@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgh30s8f4bdod"]
+[gd_scene load_steps=16 format=3 uid="uid://bgh30s8f4bdod"]
 
 [ext_resource type="Script" uid="uid://b12qsvdaajomf" path="res://sonic.gd" id="1_cqb71"]
 [ext_resource type="Texture2D" uid="uid://deug1d6krrpby" path="res://Sprites/Sonic.png" id="1_s8pwu"]
@@ -95,6 +95,22 @@ tracks/0/keys = {
 "values": [Rect2(185, 111, 28, 32)]
 }
 
+[sub_resource type="Animation" id="Animation_2kct5"]
+resource_name = "Spindash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.19999999, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(224, 116, 29, 27), Rect2(260, 116, 29, 27), Rect2(298, 116, 30, 27), Rect2(340, 116, 29, 27)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t5krs"]
 _data = {
 &"Crouch": SubResource("Animation_abohb"),
@@ -102,11 +118,15 @@ _data = {
 &"Jump": SubResource("Animation_t5krs"),
 &"Look_Up": SubResource("Animation_m600r"),
 &"RESET": SubResource("Animation_fua3x"),
+&"Spindash": SubResource("Animation_2kct5"),
 &"Walk": SubResource("Animation_x5lwf")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0qkc"]
 radius = 16.03122
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fua3x"]
+radius = 17.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m600r"]
 radius = 12.0
@@ -115,15 +135,16 @@ height = 42.0
 [node name="Sonic" type="CharacterBody2D"]
 script = ExtResource("1_cqb71")
 
-[node name="Blur" parent="." instance=ExtResource("2_fua3x")]
+[node name="Blur" parent="." node_paths=PackedStringArray("player") instance=ExtResource("2_fua3x")]
+player = NodePath("..")
 
 [node name="Animator" type="Node2D" parent="." node_paths=PackedStringArray("animator", "player_controller", "sprite", "collision", "collision2")]
 script = ExtResource("2_e0qkc")
 animator = NodePath("AnimationPlayer")
 player_controller = NodePath("..")
 sprite = NodePath("Sprite2D")
-collision = NodePath("../CollisionShape2D")
-collision2 = NodePath("../CollisionShape2D2")
+collision = NodePath("../Body")
+collision2 = NodePath("../Ball")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animator"]
 libraries = {
@@ -137,9 +158,18 @@ texture = ExtResource("1_s8pwu")
 region_enabled = true
 region_rect = Rect2(45, 5, 32, 40)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="Ball" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_e0qkc")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Ball Detector" type="Area2D" parent="."]
+position = Vector2(-1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball Detector"]
+position = Vector2(1, -1)
+shape = SubResource("CircleShape2D_fua3x")
+
+[node name="Body" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_m600r")
+
+[connection signal="area_entered" from="Ball Detector" to="." method="_on_ball_detector_area_entered"]

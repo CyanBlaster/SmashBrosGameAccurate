@@ -33,9 +33,12 @@ func _process(_delta):
 		collision2.disabled = true
 		collision.disabled = false
 	elif(Input.is_action_pressed("Player1Crouch") && player_controller.velocity.x == 0):
-		animator.play("Crouch")
-		collision2.disabled = false
-		collision.disabled = true
+		if(Input.is_action_pressed("Player1Jump")):
+			animator.play("Spindash")
+		else:
+			animator.play("Crouch")
+			collision2.disabled = false
+			collision.disabled = true
 	
 	else:
 		animator.play("Idle")
