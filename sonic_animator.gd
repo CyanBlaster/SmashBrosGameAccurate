@@ -25,7 +25,10 @@ func _process(_delta):
 		collision2.disabled = false
 		collision.disabled = true
 	elif(Sonic.moving == true):
-		animator.play("Walk")
+		if(player_controller.max_speed):
+			animator.play("Run")
+		else:
+			animator.play("Walk")
 		collision2.disabled = true
 		collision.disabled = false
 	elif(Input.is_action_pressed("Player1LookUp")):

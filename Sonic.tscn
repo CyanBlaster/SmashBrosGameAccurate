@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgh30s8f4bdod"]
+[gd_scene load_steps=20 format=3 uid="uid://bgh30s8f4bdod"]
 
 [ext_resource type="Script" uid="uid://b12qsvdaajomf" path="res://sonic.gd" id="1_cqb71"]
 [ext_resource type="Texture2D" uid="uid://deug1d6krrpby" path="res://Sprites/Sonic.png" id="1_s8pwu"]
 [ext_resource type="Script" uid="uid://dy3tchcvj1xln" path="res://sonic_animator.gd" id="2_e0qkc"]
 [ext_resource type="PackedScene" uid="uid://durgx0tnxt7tv" path="res://sonic_shield.tscn" id="2_fua3x"]
+[ext_resource type="Script" uid="uid://binld0sxoghwh" path="res://sonic_health.gd" id="5_x5lwf"]
 
 [sub_resource type="Animation" id="Animation_e0qkc"]
 resource_name = "Idle"
@@ -111,6 +112,22 @@ tracks/0/keys = {
 "values": [Rect2(224, 116, 29, 27), Rect2(260, 116, 29, 27), Rect2(298, 116, 30, 27), Rect2(340, 116, 29, 27)]
 }
 
+[sub_resource type="Animation" id="Animation_tv4it"]
+resource_name = "Run"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(16, 202, 32, 40), Rect2(60, 202, 32, 40), Rect2(103, 202, 32, 40)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_t5krs"]
 _data = {
 &"Crouch": SubResource("Animation_abohb"),
@@ -118,6 +135,7 @@ _data = {
 &"Jump": SubResource("Animation_t5krs"),
 &"Look_Up": SubResource("Animation_m600r"),
 &"RESET": SubResource("Animation_fua3x"),
+&"Run": SubResource("Animation_tv4it"),
 &"Spindash": SubResource("Animation_2kct5"),
 &"Walk": SubResource("Animation_x5lwf")
 }
@@ -131,6 +149,12 @@ radius = 17.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m600r"]
 radius = 12.0
 height = 42.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fua3x"]
+size = Vector2(6, 17.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5lwf"]
+size = Vector2(6, 17.5)
 
 [node name="Sonic" type="CharacterBody2D"]
 script = ExtResource("1_cqb71")
@@ -172,4 +196,26 @@ shape = SubResource("CircleShape2D_fua3x")
 position = Vector2(-1, 1)
 shape = SubResource("CapsuleShape2D_m600r")
 
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-12, 11.75)
+shape = SubResource("RectangleShape2D_fua3x")
+
+[node name="Right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(10, 11.75)
+shape = SubResource("RectangleShape2D_x5lwf")
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("player")]
+offset_left = -20.0
+offset_top = -48.0
+offset_right = 20.0
+offset_bottom = -25.0
+script = ExtResource("5_x5lwf")
+player = NodePath("..")
+
 [connection signal="area_entered" from="Ball Detector" to="." method="_on_ball_detector_area_entered"]
+[connection signal="area_entered" from="Left" to="." method="_on_left_area_entered"]
+[connection signal="area_entered" from="Right" to="." method="_on_right_area_entered"]

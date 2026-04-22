@@ -17,8 +17,9 @@ texture = ExtResource("2_tkjg1")
 [node name="Platform" parent="." instance=ExtResource("1_hy033")]
 position = Vector2(-46, 439)
 
-[node name="Mega Man" parent="." instance=ExtResource("3_fxwnf")]
+[node name="Mega Man" parent="." node_paths=PackedStringArray("battlefield") instance=ExtResource("3_fxwnf")]
 position = Vector2(386, 453)
+battlefield = NodePath("..")
 
 [node name="Sonic" parent="." instance=ExtResource("2_4y0t7")]
-position = Vector2(780, 459)
+position = Vector2(789, 453)

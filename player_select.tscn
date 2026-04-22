@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://jd144owpbwsa"]
+
+[ext_resource type="Texture2D" uid="uid://dwharkjdkrva8" path="res://Sprites/fighter_select_background.png" id="1_yh01e"]
+
+[node name="Player Select" type="Node2D"]
+
+[node name="FighterSelectBackground" type="Sprite2D" parent="."]
+position = Vector2(577, 382.00003)
+scale = Vector2(3.835, 3.835)
+texture = ExtResource("1_yh01e")

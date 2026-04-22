@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://8rtwtsneye6"]
+[gd_scene load_steps=17 format=3 uid="uid://8rtwtsneye6"]
 
 [ext_resource type="Script" uid="uid://djkqwojcv3mfm" path="res://mega_man.gd" id="1_0mtth"]
 [ext_resource type="Texture2D" uid="uid://dfxdv4fcm52fg" path="res://Sprites/Mega_Man.png" id="1_72wrd"]
 [ext_resource type="Script" uid="uid://domfyiplvmcxu" path="res://mega_man_animator.gd" id="2_mhm21"]
 [ext_resource type="Script" uid="uid://cpxt2u2dpncrt" path="res://label.gd" id="4_at6jn"]
+[ext_resource type="Script" uid="uid://dfkjdixnqhldx" path="res://mega_health.gd" id="5_lwuaq"]
 
 [sub_resource type="Animation" id="Animation_mhm21"]
 resource_name = "Idle"
@@ -134,9 +135,9 @@ libraries = {
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_0mtth")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Mega" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mega"]
 position = Vector2(-1, 4)
 shape = SubResource("CapsuleShape2D_mhm21")
 
@@ -149,7 +150,6 @@ offset_left = -9.0
 offset_top = -49.0
 offset_right = 10.0
 offset_bottom = -26.0
-text = "32"
 script = ExtResource("4_at6jn")
 player = NodePath("..")
 
@@ -165,6 +165,14 @@ shape = SubResource("RectangleShape2D_at6jn")
 position = Vector2(9, 3)
 shape = SubResource("RectangleShape2D_lwuaq")
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[node name="Mega_Health" type="Label" parent="." node_paths=PackedStringArray("player")]
+offset_left = -18.0
+offset_top = -65.0
+offset_right = -16.0
+offset_bottom = -42.0
+script = ExtResource("5_lwuaq")
+player = NodePath("..")
+
+[connection signal="area_entered" from="Mega" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Left" to="." method="_on_left_area_entered"]
 [connection signal="area_entered" from="Right" to="." method="_on_right_area_entered"]

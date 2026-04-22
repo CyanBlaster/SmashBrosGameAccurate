@@ -13,7 +13,8 @@ func _process(_delta: float) -> void:
 		health = 3
 		collision.disabled = false
 		show()
-
+		health = 3
+		show()
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if(body.name.begins_with("buster_") || body.name.begins_with("blade_")):
 		#print(body.name)
