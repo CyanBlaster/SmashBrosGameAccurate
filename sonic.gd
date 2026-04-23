@@ -40,10 +40,9 @@ func _physics_process(delta: float) -> void:
 	
 	if(direction != 0):
 		direct = direction
-		
+		 
 
-	if(!hold_still):
-		
+	if(!hold_still): 
 		if direction:
 			if(max_speed == true):
 				velocity.x = direction * SPEED
@@ -91,7 +90,7 @@ func _on_left_area_entered(area: Area2D) -> void:
 		print(area.name)
 		position.x += 1
 		if(recover <= 0): 
-			if(rings >= 3):
+			if(rings >= 3 && !shield): 
 				rings -= 3
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
@@ -111,7 +110,7 @@ func _on_left_area_entered(area: Area2D) -> void:
 				ring3.position.x = position.x + 30
 				ring3.velocity.x = 30
 				get_tree().current_scene.add_child(ring3)
-			elif(rings == 2):
+			elif(rings == 2 && !shield):
 				rings -= 2
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
@@ -126,7 +125,7 @@ func _on_left_area_entered(area: Area2D) -> void:
 				ring2.position.x = position.x + 60
 				ring2.velocity.x = -30
 				get_tree().current_scene.add_child(ring2)
-			elif(rings == 1):
+			elif(rings == 1 && !shield):
 				rings -= 1
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
@@ -136,7 +135,7 @@ func _on_left_area_entered(area: Area2D) -> void:
 				ring.position.x = position.x + 90
 				ring.velocity.x = -30
 				get_tree().current_scene.add_child(ring)
-			else:
+			elif(!shield):
 				queue_free()
 		#print(position.y)
 		#print("Bullet X: ", bullet.position.x)
@@ -152,7 +151,7 @@ func _on_right_area_entered(area: Area2D) -> void:
 		print(area.name)
 		position.x -= 1
 		if(recover <= 0):
-			if(rings >= 3): 
+			if(rings >= 3 && !shield): 
 				rings -= 3
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
@@ -172,7 +171,7 @@ func _on_right_area_entered(area: Area2D) -> void:
 				ring3.position.x = position.x - 30
 				ring3.velocity.x = -30
 				get_tree().current_scene.add_child(ring3)
-			elif(rings == 2):
+			elif(rings == 2 && !shield):
 				rings -= 2
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
@@ -187,7 +186,7 @@ func _on_right_area_entered(area: Area2D) -> void:
 				ring2.position.x = position.x - 60
 				ring2.velocity.x = -30
 				get_tree().current_scene.add_child(ring2)
-			elif(rings == 1):
+			elif(rings == 1 && !shield):
 				rings -= 1
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
@@ -197,7 +196,7 @@ func _on_right_area_entered(area: Area2D) -> void:
 				ring.position.x = position.x - 90
 				ring.velocity.x = -30
 				get_tree().current_scene.add_child(ring)
-			else:
+			elif(!shield):
 				queue_free()
 	elif (area.name.begins_with("ring_")):
 		rings += 1

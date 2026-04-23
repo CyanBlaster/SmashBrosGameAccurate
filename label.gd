@@ -7,8 +7,9 @@ func _process(_delta):
 		show()
 		text = str(player.metal_blade_energy)
 	elif(player.weapon == 3): 
-		show()
-		text = str(player.metal_blade_energy)
+		show() 
+		text = str(player.air_energy)
 	else:
 		hide()
+ 
  

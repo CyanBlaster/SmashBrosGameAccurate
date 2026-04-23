@@ -13,6 +13,7 @@ const JUMP_VELOCITY = -500.0
 @export var health = 24
 @export var recover = 1
 @export var metal_blade_energy = 8
+@export var air_energy = 12
 @export var hold_still = true 
 
 #@onready var Bullet = preload("res://buster.tscn")
@@ -24,13 +25,28 @@ func _process(delta):
 		recover -= delta
 	
 	if Input.is_action_just_pressed("Player2Switch"):  
-		if(weapon < 2):
+		if(weapon < 3):
 			weapon += 1
 		else:
 			weapon = 1
 	if Input.is_action_just_pressed("Player2Shoot"):
-		if(weapon == 2 && metal_blade_energy > 0):
+		if(weapon == 3 && air_energy > 0):
 			hold_still = true
+			var bullet = preload("res://air_shooter.tscn").instantiate()
+			bullet.position.y = position.y + 5 
+			bullet.direction = direct
+			if(direct > 0):
+				bullet.position.x = position.x + 35
+			else:
+				bullet.position.x = position.x - 35
+			#print(position.y)
+			#print("Bullet X: ", bullet.position.x)
+			#print("Bullet Y: ", bullet.position.y)
+			bullet.name = "air_"
+			get_tree().current_scene.add_child(bullet)
+			air_energy -= 1
+		elif(weapon == 2 && metal_blade_energy > 0): 
+			hold_still = true 
 			var bullet = preload("res://metal_blade.tscn").instantiate()
 			bullet.position.y = position.y + 5
 			bullet.direction = direct
@@ -42,12 +58,12 @@ func _process(delta):
 			#print("Bullet X: ", bullet.position.x)
 			#print("Bullet Y: ", bullet.position.y)
 			bullet.name = "blade_"
-			get_parent().add_child(bullet)
+			get_tree().current_scene.add_child(bullet)
 			metal_blade_energy -= 1
 		else:
 			hold_still = false
 			var bullet = preload("res://buster.tscn").instantiate()
-			
+			 
 			#var battlefield = preload("res://battlefield.tscn").instantiate()
 			
 			bullet.position.y = position.y + 10
@@ -60,7 +76,7 @@ func _process(delta):
 			#print("Bullet X: ", bullet.position.x)
 			#print("Bullet Y: ", bullet.position.y)
 			bullet.name = "buster_"
-			get_parent().add_child(bullet)
+			get_tree().current_scene.add_child(bullet)
 	else:
 		hold_still = false
 func _physics_process(delta: float) -> void:

@@ -1,0 +1,60 @@
+[gd_scene load_steps=5 format=3 uid="uid://bbhps2o8h2r2j"]
+
+[ext_resource type="Script" uid="uid://di2a2kb4r4nk6" path="res://air_shooter.gd" id="1_kdmiu"]
+[ext_resource type="Texture2D" uid="uid://bdub84235xpgm" path="res://Sprites/weapons.png" id="1_qc1pq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qc1pq"]
+radius = 6.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kdmiu"]
+radius = 5.0
+height = 12.0
+
+[node name="Air Shooter" type="CharacterBody2D"]
+script = ExtResource("1_kdmiu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qc1pq")
+region_enabled = true
+region_rect = Rect2(235, 65, 22, 22)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-24, 0)
+texture = ExtResource("1_qc1pq")
+region_enabled = true
+region_rect = Rect2(235, 65, 22, 22)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(24, 1)
+texture = ExtResource("1_qc1pq")
+region_enabled = true
+region_rect = Rect2(235, 65, 22, 22)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_qc1pq")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(24, 0)
+shape = SubResource("CapsuleShape2D_qc1pq")
+
+[node name="Area2D3" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D3"]
+position = Vector2(-24, -1)
+shape = SubResource("CapsuleShape2D_qc1pq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 0)
+shape = SubResource("CapsuleShape2D_kdmiu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kdmiu")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-24, -1)
+shape = SubResource("CapsuleShape2D_kdmiu")

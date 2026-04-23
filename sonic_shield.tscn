@@ -22,4 +22,5 @@ texture = ExtResource("1_y8kgf")
 region_enabled = true
 region_rect = Rect2(0, 45, 50, 50)
 
+[connection signal="area_entered" from="shieldo" to="." method="_on_shieldo_area_entered"]
 [connection signal="body_entered" from="shieldo" to="." method="_on_area_2d_body_entered"]
