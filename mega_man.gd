@@ -64,17 +64,16 @@ func _process(delta):
 			hold_still = false
 			var bullet = preload("res://buster.tscn").instantiate()
 			 
-			#var battlefield = preload("res://battlefield.tscn").instantiate()
 			
 			bullet.position.y = position.y + 10
-			bullet.direction = direct
+			bullet.direction = direct 
 			if(direct > 0):
 				bullet.position.x = position.x + 20
 			else:
 				bullet.position.x = position.x - 20
 			#print(position.y)
 			#print("Bullet X: ", bullet.position.x)
-			#print("Bullet Y: ", bullet.position.y)
+			#print("Bullet Y: ", bullet.position.y) 
 			bullet.name = "buster_"
 			get_tree().current_scene.add_child(bullet)
 	else:
@@ -111,12 +110,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
  
 
-
-#func _on_area_2d_area_entered(_area: Area2D) -> void:
-	#position.x -= 10
-
-
-
 func _on_left_area_entered(_area: Area2D) -> void:
 	position.x += 10
 	if(recover <= 0):
@@ -125,6 +118,7 @@ func _on_left_area_entered(_area: Area2D) -> void:
 			recover = 1
 		else:
 			queue_free()
+			get_tree().change_scene_to_file("res://player_select.tscn")
 
 func _on_right_area_entered(_area: Area2D) -> void:
 	position.x -= 10
@@ -134,3 +128,4 @@ func _on_right_area_entered(_area: Area2D) -> void:
 			health -= 1
 		else:
 			queue_free()
+			get_tree().change_scene_to_file("res://player_select.tscn")

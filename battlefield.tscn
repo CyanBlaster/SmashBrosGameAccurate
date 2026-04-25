@@ -22,7 +22,8 @@ position = Vector2(-46, 439)
 position = Vector2(386, 453)
 battlefield = NodePath("..")
 
-[node name="Sonic" parent="." instance=ExtResource("2_4y0t7")]
+[node name="Sonic" parent="." node_paths=PackedStringArray("battlefield") instance=ExtResource("2_4y0t7")]
 position = Vector2(789, 453)
+battlefield = NodePath("..")
 
 [node name="Barrier" parent="." instance=ExtResource("6_y8d5v")]

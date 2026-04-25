@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dky6o3u85kimv"]
+[gd_scene load_steps=5 format=3 uid="uid://dky6o3u85kimv"]
 
 [ext_resource type="Script" uid="uid://cymabtwqii2x3" path="res://title_screen.gd" id="1_v6p8y"]
 [ext_resource type="Texture2D" uid="uid://w7ogurqoij4g" path="res://Sprites/Title Screen.png" id="2_ak2if"]
+[ext_resource type="PackedScene" uid="uid://coxxkwtqhg0fr" path="res://barrier.tscn" id="3_ig5kc"]
+
+[sub_resource type="Theme" id="Theme_ak2if"]
+default_font_size = 20
 
 [node name="Title_Screen" type="Node2D"]
 script = ExtResource("1_v6p8y")
@@ -10,3 +14,15 @@ script = ExtResource("1_v6p8y")
 position = Vector2(579, 324.5)
 scale = Vector2(3.8066666, 3.205)
 texture = ExtResource("2_ak2if")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 471.0
+offset_top = 425.0
+offset_right = 656.0
+offset_bottom = 453.0
+theme = SubResource("Theme_ak2if")
+text = "Press Space to Play"
+
+[node name="Barrier" parent="." instance=ExtResource("3_ig5kc")]
+position = Vector2(105, 0)
+rotation = 0.0077836816

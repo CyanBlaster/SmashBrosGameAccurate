@@ -1,0 +1,139 @@
+[gd_scene load_steps=13 format=3 uid="uid://bb2a1imbn5ihv"]
+
+[ext_resource type="Texture2D" uid="uid://diks3qoesyn1b" path="res://Sprites/Mario.png" id="1_gi6ov"]
+[ext_resource type="Script" uid="uid://lecu7duqm7br" path="res://mario.gd" id="1_to501"]
+
+[sub_resource type="Animation" id="Animation_to501"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(8, 85, 15, 27)]
+}
+
+[sub_resource type="Animation" id="Animation_bm35b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(8, 85, 15, 27)]
+}
+
+[sub_resource type="Animation" id="Animation_1f0y0"]
+resource_name = "Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(29, 85, 15, 27), Rect2(53, 85, 16, 27), Rect2(29, 85, 16, 27), Rect2(8, 85, 15, 27)]
+}
+
+[sub_resource type="Animation" id="Animation_snave"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(955, 632, 14, 18)]
+}
+
+[sub_resource type="Animation" id="Animation_s2qdp"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(120, 86, 16, 26)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5y20d"]
+_data = {
+&"Idle": SubResource("Animation_to501"),
+&"Jump": SubResource("Animation_s2qdp"),
+&"RESET": SubResource("Animation_bm35b"),
+&"Walk": SubResource("Animation_1f0y0"),
+&"crouch": SubResource("Animation_snave")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dc3go"]
+radius = 7.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm35b"]
+radius = 1.0
+height = 24.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f0y0"]
+radius = 1.0
+height = 24.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snave"]
+size = Vector2(12, 5)
+
+[node name="Mario" type="CharacterBody2D"]
+script = ExtResource("1_to501")
+
+[node name="Animator" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Animator"]
+texture = ExtResource("1_gi6ov")
+region_enabled = true
+region_rect = Rect2(8, 85, 15, 27)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animator"]
+libraries = {
+&"": SubResource("AnimationLibrary_5y20d")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dc3go")
+
+[node name="Left" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(7, -1)
+shape = SubResource("CapsuleShape2D_bm35b")
+
+[node name="Right" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(-7, -1)
+shape = SubResource("CapsuleShape2D_1f0y0")
+
+[node name="Jump" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jump"]
+position = Vector2(0, 11.5)
+shape = SubResource("RectangleShape2D_snave")

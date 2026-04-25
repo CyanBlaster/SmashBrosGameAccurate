@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Player_Controller
 
+@export var battlefield : Node2D
+
 const SPEED = 500.0
 const JUMP_VELOCITY = -550.0
 @export var moving = false
@@ -74,10 +76,8 @@ func _physics_process(delta: float) -> void:
 		
 	move_and_slide()
 
-
-
-func _on_ball_detector_area_entered(area: Area2D) -> void:
-	if(velocity.y != 0 && area.name.begins_with("ring_")):
+func _on_ball_detector_area_entered(_area: Area2D) -> void:
+	if(velocity.y != 0):
 		velocity.y = JUMP_VELOCITY
 	elif(velocity.x != 0): 
 		velocity.y = JUMP_VELOCITY
@@ -97,33 +97,33 @@ func _on_left_area_entered(area: Area2D) -> void:
 				var ring2 = preload("res://rings.tscn").instantiate()
 				var ring3 = preload("res://rings.tscn").instantiate()
 				ring.position.y = position.y + 5
-				ring2.position.y = position.y - 45
-				ring3.position.y = position.y - 95
+				ring2.position.y = position.y - 20
+				ring3.position.y = position.y - 45
 				#ring.direction = direct
 				ring.name = "ring_"
 				ring.position.x = position.x + 90
-				ring.velocity.x = 30
+				ring.velocity.x = 90
 				get_tree().current_scene.add_child(ring)
 				ring2.position.x = position.x + 60
-				ring2.velocity.x = 30
+				ring2.velocity.x = 90
 				get_tree().current_scene.add_child(ring2)
 				ring3.position.x = position.x + 30
-				ring3.velocity.x = 30
+				ring3.velocity.x = 90
 				get_tree().current_scene.add_child(ring3)
-			elif(rings == 2 && !shield):
+			elif(rings == 2 && !shield): 
 				rings -= 2
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
 				var ring2 = preload("res://rings.tscn").instantiate()
 				ring.position.y = position.y + 5
-				ring2.position.y = position.y - 45
+				ring2.position.y = position.y - 20
 				#ring.direction = direct
 				ring.name = "ring_"
 				ring.position.x = position.x + 90
-				ring.velocity.x = 30
+				ring.velocity.x = 90
 				get_tree().current_scene.add_child(ring)
 				ring2.position.x = position.x + 60
-				ring2.velocity.x = -30
+				ring2.velocity.x = 90
 				get_tree().current_scene.add_child(ring2)
 			elif(rings == 1 && !shield):
 				rings -= 1
@@ -133,14 +133,11 @@ func _on_left_area_entered(area: Area2D) -> void:
 				#ring.direction = direct
 				ring.name = "ring_"
 				ring.position.x = position.x + 90
-				ring.velocity.x = -30
+				ring.velocity.x = 90
 				get_tree().current_scene.add_child(ring)
 			elif(!shield):
 				queue_free()
-		#print(position.y)
-		#print("Bullet X: ", bullet.position.x)
-		#print("Bullet Y: ", bullet.position.y)
-		
+				get_tree().change_scene_to_file("res://player_select.tscn")
 		
 	elif (area.name.begins_with("ring_")):
 		rings += 1 
@@ -158,33 +155,33 @@ func _on_right_area_entered(area: Area2D) -> void:
 				var ring2 = preload("res://rings.tscn").instantiate()
 				var ring3 = preload("res://rings.tscn").instantiate()
 				ring.position.y = position.y + 5
-				ring2.position.y = position.y - 45
-				ring3.position.y = position.y - 95
+				ring2.position.y = position.y - 20
+				ring3.position.y = position.y - 45
 				#ring.direction = direct
 				ring.name = "ring_"
 				ring.position.x = position.x - 90
-				ring.velocity.x = -30
+				ring.velocity.x = -90
 				get_tree().current_scene.add_child(ring)
 				ring2.position.x = position.x - 60
-				ring2.velocity.x = -30
+				ring2.velocity.x = -90
 				get_tree().current_scene.add_child(ring2)
 				ring3.position.x = position.x - 30
-				ring3.velocity.x = -30
+				ring3.velocity.x = -90
 				get_tree().current_scene.add_child(ring3)
 			elif(rings == 2 && !shield):
 				rings -= 2
 				recover = 1
 				var ring = preload("res://rings.tscn").instantiate()
 				var ring2 = preload("res://rings.tscn").instantiate()
-				ring.position.y = position.y + 5
-				ring2.position.y = position.y - 45
+				ring.position.y = position.y + 5 
+				ring2.position.y = position.y - 20
 				#ring.direction = direct
 				ring.name = "ring_"
 				ring.position.x = position.x - 90
-				ring.velocity.x = -30
+				ring.velocity.x = -90
 				get_tree().current_scene.add_child(ring)
 				ring2.position.x = position.x - 60
-				ring2.velocity.x = -30
+				ring2.velocity.x = -90
 				get_tree().current_scene.add_child(ring2)
 			elif(rings == 1 && !shield):
 				rings -= 1
@@ -194,9 +191,11 @@ func _on_right_area_entered(area: Area2D) -> void:
 				#ring.direction = direct
 				ring.name = "ring_"
 				ring.position.x = position.x - 90
-				ring.velocity.x = -30
+				ring.velocity.x = -90
 				get_tree().current_scene.add_child(ring)
 			elif(!shield):
+				battlefield.players -= 1
 				queue_free()
+				get_tree().change_scene_to_file("res://player_select.tscn")
 	elif (area.name.begins_with("ring_")):
-		rings += 1
+		rings += 1 

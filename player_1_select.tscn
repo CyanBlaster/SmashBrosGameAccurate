@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://di78p7kb1eur2"]
+
+[ext_resource type="Texture2D" uid="uid://cixqnsxmrpb61" path="res://Sprites/Character_Select.png" id="1_7oqrm"]
+[ext_resource type="Script" uid="uid://dbvfoomo2lt2t" path="res://player_1_select.gd" id="1_vmtkq"]
+
+[node name="Player1Select" type="Node2D" node_paths=PackedStringArray("One", "Two", "Three", "Four")]
+script = ExtResource("1_vmtkq")
+One = NodePath("Mario")
+Two = NodePath("Link")
+Three = NodePath("Mega Man")
+Four = NodePath("Sonic")
+
+[node name="Mario" type="Sprite2D" parent="."]
+position = Vector2(290, 327)
+texture = ExtResource("1_7oqrm")
+region_enabled = true
+region_rect = Rect2(2, 2, 120, 108)
+
+[node name="Link" type="Sprite2D" parent="."]
+position = Vector2(290, 327)
+texture = ExtResource("1_7oqrm")
+region_enabled = true
+region_rect = Rect2(650, 120, 130, 108)
+
+[node name="Mega Man" type="Sprite2D" parent="."]
+position = Vector2(290, 327)
+texture = ExtResource("1_7oqrm")
+region_enabled = true
+region_rect = Rect2(650, 720, 130, 108)
+
+[node name="Sonic" type="Sprite2D" parent="."]
+position = Vector2(290, 327)
+texture = ExtResource("1_7oqrm")
+region_enabled = true
+region_rect = Rect2(780, 720, 130, 108)
