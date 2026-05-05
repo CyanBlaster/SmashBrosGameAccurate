@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bgh30s8f4bdod"]
+[gd_scene load_steps=21 format=3 uid="uid://bgh30s8f4bdod"]
 
 [ext_resource type="Script" uid="uid://b12qsvdaajomf" path="res://sonic.gd" id="1_cqb71"]
 [ext_resource type="Texture2D" uid="uid://deug1d6krrpby" path="res://Sprites/Sonic.png" id="1_s8pwu"]
@@ -156,6 +156,9 @@ size = Vector2(6, 17.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x5lwf"]
 size = Vector2(6, 17.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5krs"]
+size = Vector2(21, 11)
+
 [node name="Sonic" type="CharacterBody2D"]
 script = ExtResource("1_cqb71")
 
@@ -216,6 +219,13 @@ offset_bottom = -25.0
 script = ExtResource("5_x5lwf")
 player = NodePath("..")
 
+[node name="Jump_Detector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jump_Detector"]
+position = Vector2(-0.5, -15.5)
+shape = SubResource("RectangleShape2D_t5krs")
+
 [connection signal="area_entered" from="Ball Detector" to="." method="_on_ball_detector_area_entered"]
 [connection signal="area_entered" from="Left" to="." method="_on_left_area_entered"]
 [connection signal="area_entered" from="Right" to="." method="_on_right_area_entered"]
+[connection signal="area_entered" from="Jump_Detector" to="." method="_on_jump_detector_area_entered"]

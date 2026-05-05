@@ -1,7 +1,70 @@
-[gd_scene load_steps=13 format=3 uid="uid://bb2a1imbn5ihv"]
+[gd_scene load_steps=33 format=3 uid="uid://bb2a1imbn5ihv"]
 
 [ext_resource type="Texture2D" uid="uid://diks3qoesyn1b" path="res://Sprites/Mario.png" id="1_gi6ov"]
 [ext_resource type="Script" uid="uid://lecu7duqm7br" path="res://mario.gd" id="1_to501"]
+[ext_resource type="Script" uid="uid://cevynmg3uf0ct" path="res://mario_animator.gd" id="2_bm35b"]
+[ext_resource type="Texture2D" uid="uid://hssggf8jnm8n" path="res://Sprites/Powerups.png" id="4_1f0y0"]
+[ext_resource type="Script" uid="uid://mv8vwu4ocv2q" path="res://powerup_selector.gd" id="4_snave"]
+
+[sub_resource type="Animation" id="Animation_35g27"]
+resource_name = "Fire_Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(6, 126, 19, 26)]
+}
+
+[sub_resource type="Animation" id="Animation_w3td8"]
+resource_name = "Fire_Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(119, 126, 19, 26)]
+}
+
+[sub_resource type="Animation" id="Animation_ux168"]
+resource_name = "Fire_Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(320, 126, 19, 26), Rect2(345, 126, 19, 26), Rect2(370, 126, 19, 26), Rect2(345, 126, 19, 26)]
+}
+
+[sub_resource type="Animation" id="Animation_qowpk"]
+resource_name = "Fire_Walk"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(26, 126, 19, 26), Rect2(50, 126, 19, 26), Rect2(26, 126, 19, 26), Rect2(6, 126, 19, 26)]
+}
 
 [sub_resource type="Animation" id="Animation_to501"]
 resource_name = "Idle"
@@ -18,6 +81,21 @@ tracks/0/keys = {
 "values": [Rect2(8, 85, 15, 27)]
 }
 
+[sub_resource type="Animation" id="Animation_s2qdp"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(120, 86, 16, 26)]
+}
+
 [sub_resource type="Animation" id="Animation_bm35b"]
 length = 0.001
 tracks/0/type = "value"
@@ -31,6 +109,129 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Rect2(8, 85, 15, 27)]
+}
+
+[sub_resource type="Animation" id="Animation_5y20d"]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(320, 86, 19, 26), Rect2(345, 86, 19, 26), Rect2(370, 86, 19, 26), Rect2(345, 86, 19, 26)]
+}
+
+[sub_resource type="Animation" id="Animation_s25ri"]
+resource_name = "Run_Fire_Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(432, 126, 19, 26)]
+}
+
+[sub_resource type="Animation" id="Animation_dc3go"]
+resource_name = "Run_Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(432, 86, 19, 26)]
+}
+
+[sub_resource type="Animation" id="Animation_riec2"]
+resource_name = "Run_Small_Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(432, 50, 16, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_pcyhl"]
+resource_name = "Small_Idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(4, 49, 19, 25)]
+}
+
+[sub_resource type="Animation" id="Animation_5d4os"]
+resource_name = "Small_Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(120, 50, 16, 24)]
+}
+
+[sub_resource type="Animation" id="Animation_ya4e6"]
+resource_name = "Small_Run"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(320, 49, 16, 24), Rect2(341, 50, 16, 23)]
+}
+
+[sub_resource type="Animation" id="Animation_lnycf"]
+resource_name = "Small_Walk"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Rect2(24, 49, 16, 25), Rect2(4, 49, 19, 25)]
 }
 
 [sub_resource type="Animation" id="Animation_1f0y0"]
@@ -63,51 +264,120 @@ tracks/0/keys = {
 "values": [Rect2(955, 632, 14, 18)]
 }
 
-[sub_resource type="Animation" id="Animation_s2qdp"]
-resource_name = "Jump"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5y20d"]
+_data = {
+&"Fire_Idle": SubResource("Animation_35g27"),
+&"Fire_Jump": SubResource("Animation_w3td8"),
+&"Fire_Run": SubResource("Animation_ux168"),
+&"Fire_Walk": SubResource("Animation_qowpk"),
+&"Idle": SubResource("Animation_to501"),
+&"Jump": SubResource("Animation_s2qdp"),
+&"RESET": SubResource("Animation_bm35b"),
+&"Run": SubResource("Animation_5y20d"),
+&"Run_Fire_Jump": SubResource("Animation_s25ri"),
+&"Run_Jump": SubResource("Animation_dc3go"),
+&"Run_Small_Jump": SubResource("Animation_riec2"),
+&"Small_Idle": SubResource("Animation_pcyhl"),
+&"Small_Jump": SubResource("Animation_5d4os"),
+&"Small_Run": SubResource("Animation_ya4e6"),
+&"Small_Walk": SubResource("Animation_lnycf"),
+&"Walk": SubResource("Animation_1f0y0"),
+&"crouch": SubResource("Animation_snave")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm35b"]
+radius = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f0y0"]
+radius = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snave"]
+size = Vector2(24, 10.5)
+
+[sub_resource type="Animation" id="Animation_8ac4a"]
+resource_name = "Fire Flower"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/path = NodePath("Powerups:region_rect")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Rect2(120, 86, 16, 26)]
+"values": [Rect2(20, 12, 16, 16)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_5y20d"]
+[sub_resource type="Animation" id="Animation_xxmno"]
+resource_name = "Mushroom"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Powerups:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(2, 12, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_k64sq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Powerups:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(20, 12, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_cxyqo"]
+resource_name = "Star"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Powerups:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Rect2(110, 12, 16, 16), Rect2(128, 12, 16, 16), Rect2(146, 12, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35g27"]
 _data = {
-&"Idle": SubResource("Animation_to501"),
-&"Jump": SubResource("Animation_s2qdp"),
-&"RESET": SubResource("Animation_bm35b"),
-&"Walk": SubResource("Animation_1f0y0"),
-&"crouch": SubResource("Animation_snave")
+&"Fire Flower": SubResource("Animation_8ac4a"),
+&"Mushroom": SubResource("Animation_xxmno"),
+&"RESET": SubResource("Animation_k64sq"),
+&"Star": SubResource("Animation_cxyqo")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dc3go"]
-radius = 7.0
-height = 26.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bm35b"]
-radius = 1.0
-height = 24.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1f0y0"]
-radius = 1.0
-height = 24.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_snave"]
-size = Vector2(12, 5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_snave"]
+radius = 11.0
+height = 42.0
 
 [node name="Mario" type="CharacterBody2D"]
 script = ExtResource("1_to501")
 
-[node name="Animator" type="Node2D" parent="."]
+[node name="Animator" type="Node2D" parent="." node_paths=PackedStringArray("animator", "mario", "sprite")]
+script = ExtResource("2_bm35b")
+animator = NodePath("AnimationPlayer")
+mario = NodePath("..")
+sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="Animator"]
+scale = Vector2(1.6875, 1.6875)
 texture = ExtResource("1_gi6ov")
 region_enabled = true
 region_rect = Rect2(8, 85, 15, 27)
@@ -117,23 +387,44 @@ libraries = {
 &"": SubResource("AnimationLibrary_5y20d")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_dc3go")
-
 [node name="Left" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
-position = Vector2(7, -1)
+position = Vector2(11, -1)
 shape = SubResource("CapsuleShape2D_bm35b")
 
 [node name="Right" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
-position = Vector2(-7, -1)
+position = Vector2(-11, -1)
 shape = SubResource("CapsuleShape2D_1f0y0")
 
 [node name="Jump" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Jump"]
-position = Vector2(0, 11.5)
+position = Vector2(0, 16.75)
 shape = SubResource("RectangleShape2D_snave")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Powerup Selector" type="Node2D" parent="." node_paths=PackedStringArray("Mario", "animator")]
+position = Vector2(0, -35)
+script = ExtResource("4_snave")
+Mario = NodePath("..")
+animator = NodePath("AnimationPlayer")
+
+[node name="Powerups" type="Sprite2D" parent="Powerup Selector"]
+texture = ExtResource("4_1f0y0")
+region_enabled = true
+region_rect = Rect2(20, 12, 16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Powerup Selector"]
+libraries = {
+&"": SubResource("AnimationLibrary_35g27")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_snave")
+
+[connection signal="area_entered" from="Left" to="." method="_on_left_area_entered"]
+[connection signal="area_entered" from="Right" to="." method="_on_right_area_entered"]

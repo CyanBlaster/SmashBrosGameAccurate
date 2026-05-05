@@ -53,7 +53,7 @@ func _physics_process(delta: float) -> void:
 			held += delta
 			if(held >= 0.5):
 				max_speed = true
-			moving = true  
+			moving = true
 		else:
 			max_speed = false
 			if(Input.is_action_just_released("Player1Crouch") && Input.is_action_pressed("Player1Jump")):
@@ -199,3 +199,62 @@ func _on_right_area_entered(area: Area2D) -> void:
 				get_tree().change_scene_to_file("res://player_select.tscn")
 	elif (area.name.begins_with("ring_")):
 		rings += 1 
+
+
+func _on_jump_detector_area_entered(area: Area2D) -> void:
+	if(area.name == "Jump"):
+		if(!area.name.begins_with("ring_") && !area.name.begins_with("Left") && !area.name.begins_with("Right") && !area.name.begins_with("Mega")):
+			print(area.name)
+			position.x -= 1
+			if(recover <= 0):
+				if(rings >= 3 && !shield): 
+					rings -= 3
+					recover = 1
+					var ring = preload("res://rings.tscn").instantiate()
+					var ring2 = preload("res://rings.tscn").instantiate()
+					var ring3 = preload("res://rings.tscn").instantiate()
+					ring.position.y = position.y + 5
+					ring2.position.y = position.y - 20
+					ring3.position.y = position.y - 45
+					#ring.direction = direct
+					ring.name = "ring_"
+					ring.position.x = position.x - 90
+					ring.velocity.x = -90
+					get_tree().current_scene.add_child(ring)
+					ring2.position.x = position.x - 60
+					ring2.velocity.x = -90
+					get_tree().current_scene.add_child(ring2)
+					ring3.position.x = position.x - 30
+					ring3.velocity.x = -90
+					get_tree().current_scene.add_child(ring3)
+				elif(rings == 2 && !shield):
+					rings -= 2
+					recover = 1
+					var ring = preload("res://rings.tscn").instantiate()
+					var ring2 = preload("res://rings.tscn").instantiate()
+					ring.position.y = position.y + 5 
+					ring2.position.y = position.y - 20
+					#ring.direction = direct
+					ring.name = "ring_"
+					ring.position.x = position.x - 90
+					ring.velocity.x = -90
+					get_tree().current_scene.add_child(ring)
+					ring2.position.x = position.x - 60
+					ring2.velocity.x = -90
+					get_tree().current_scene.add_child(ring2)
+				elif(rings == 1 && !shield):
+					rings -= 1
+					recover = 1
+					var ring = preload("res://rings.tscn").instantiate()
+					ring.position.y = position.y + 5
+					#ring.direction = direct
+					ring.name = "ring_"
+					ring.position.x = position.x - 90
+					ring.velocity.x = -90
+					get_tree().current_scene.add_child(ring)
+				elif(!shield):
+					battlefield.players -= 1
+					queue_free()
+					get_tree().change_scene_to_file("res://player_select.tscn")
+		elif (area.name.begins_with("ring_")):
+			rings += 1 

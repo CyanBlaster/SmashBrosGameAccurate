@@ -36,7 +36,7 @@ position = Vector2(54.448822, 85.50212)
 scale = Vector2(0.8672876, 1.1432923)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform/platform"]
-position = Vector2(-62.669586, -77.01851)
+position = Vector2(-62.669586, -76.57233)
 shape = SubResource("RectangleShape2D_s8bxr")
 
 [node name="Side Platform2" type="Sprite2D" parent="Platform"]
@@ -51,5 +51,5 @@ position = Vector2(54.448822, 86.52237)
 scale = Vector2(0.8672876, 1.1432923)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform/Side Platform2/platform"]
-position = Vector2(-62.281693, -77.9092)
+position = Vector2(-62.281693, -77.46301)
 shape = SubResource("RectangleShape2D_s8bxr")

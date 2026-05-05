@@ -7,8 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://wr8db51hgado" path="res://player_2_select.tscn" id="5_331r0"]
 [ext_resource type="Script" uid="uid://dk511m37x1tmr" path="res://button.gd" id="6_c3g8w"]
 
-[node name="Player Select" type="Node2D"]
+[node name="Player Select" type="Node2D" node_paths=PackedStringArray("player1select", "player2select")]
 script = ExtResource("1_ddm18")
+player1select = NodePath("Player1Select")
+player2select = NodePath("Player2Select")
 
 [node name="FighterSelectBackground" type="Sprite2D" parent="."]
 position = Vector2(577, 382.00003)
@@ -77,7 +79,7 @@ text = "Sonic - 4"
 [node name="Player1Select" parent="." instance=ExtResource("4_cfwvh")]
 position = Vector2(40, 192)
 
-[node name="Player_2_Select" parent="." node_paths=PackedStringArray("chara") instance=ExtResource("5_331r0")]
+[node name="Player2Select" parent="." node_paths=PackedStringArray("chara") instance=ExtResource("5_331r0")]
 position = Vector2(778, 522)
 chara = NodePath("../Player1Select")
 
@@ -88,6 +90,6 @@ offset_right = 587.0
 offset_bottom = 619.0
 text = "Start"
 script = ExtResource("6_c3g8w")
-selection = NodePath("../Player_2_Select")
+selection = NodePath("../Player2Select")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

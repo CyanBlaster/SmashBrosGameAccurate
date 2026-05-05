@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bk5q83ygabr8l"]
+[gd_scene load_steps=5 format=3 uid="uid://bk5q83ygabr8l"]
 
 [ext_resource type="PackedScene" uid="uid://csj1buka8rtb4" path="res://platform.tscn" id="1_hy033"]
 [ext_resource type="Script" uid="uid://cqh01hb3t7bn4" path="res://battlefield.gd" id="1_tkjg1"]
-[ext_resource type="PackedScene" uid="uid://bgh30s8f4bdod" path="res://Sonic.tscn" id="2_4y0t7"]
 [ext_resource type="Texture2D" uid="uid://bu84grpgfuvtq" path="res://Sprites/Background.png" id="2_tkjg1"]
-[ext_resource type="PackedScene" uid="uid://8rtwtsneye6" path="res://Mega_Man.tscn" id="3_fxwnf"]
 [ext_resource type="PackedScene" uid="uid://coxxkwtqhg0fr" path="res://barrier.tscn" id="6_y8d5v"]
 
 [node name="Battlefield" type="Node2D"]
@@ -17,13 +15,5 @@ texture = ExtResource("2_tkjg1")
 
 [node name="Platform" parent="." instance=ExtResource("1_hy033")]
 position = Vector2(-46, 439)
-
-[node name="Mega Man" parent="." node_paths=PackedStringArray("battlefield") instance=ExtResource("3_fxwnf")]
-position = Vector2(386, 453)
-battlefield = NodePath("..")
-
-[node name="Sonic" parent="." node_paths=PackedStringArray("battlefield") instance=ExtResource("2_4y0t7")]
-position = Vector2(789, 453)
-battlefield = NodePath("..")
 
 [node name="Barrier" parent="." instance=ExtResource("6_y8d5v")]
