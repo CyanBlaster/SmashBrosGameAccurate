@@ -11,7 +11,13 @@ const JUMP_VELOCITY = -600.0
 @export var recover = 1
 @export var speed_multi = 1
 @export var powerup = 0
-@export var player = 2
+@export var player = 2 
+
+func _ready():
+	if position.x < 600 && position.x > 200:
+		player = 2
+	else:
+		player = 1
 
 func jump_check():
 	if(player == 2):
@@ -28,7 +34,7 @@ func fireball_check():
 	if(player == 2):
 		if Input.is_action_just_pressed("Player2Sprint"):
 			return true
-		else:
+		else: 
 			return false
 	else:
 		if Input.is_action_just_pressed("Player1Shield"):
@@ -46,7 +52,17 @@ func sprint_check():
 			return true
 		else:
 			return false
-		
+func powerup_check():
+	if(player == 2):
+		if Input.is_action_pressed("Player2Shield"):
+			return true
+		else:
+			return false
+	else:
+		if Input.is_action_pressed("Player1Shield"):
+			return true
+		else:
+			return false
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -110,6 +126,7 @@ func _on_left_area_entered(area: Area2D) -> void:
 	if(recover <= 0 && !area.name.begins_with("ring")):
 		if(powerup == -1):
 			queue_free()
+			get_tree().change_scene_to_file("res://player_select.tscn")
 		elif(powerup == 0):
 			powerup = -1 
 		elif(powerup != - 1 && powerup != 0):
@@ -124,7 +141,8 @@ func _on_right_area_entered(area: Area2D) -> void:
 			recover = 1
 			powerup = 0
 		elif(powerup == -1):
-			queue_free() 
+			queue_free()
+			get_tree().change_scene_to_file("res://player_select.tscn") 
 		elif(powerup == 0):
 			powerup = -1
 		recover = 1
